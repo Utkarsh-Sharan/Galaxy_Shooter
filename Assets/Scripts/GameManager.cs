@@ -31,11 +31,6 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Application.Quit();
-        }
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
             _pauseMenuPanel.SetActive(true);
             _pauseAnimator.SetBool("isPaused", true);   //activates that top-down animation of pause menu
             Time.timeScale = 0;
