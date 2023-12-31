@@ -1526,9 +1526,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _palette1: {fileID: 1937029482}
   _palette2: {fileID: 1072706925}
+  _introVideo: {fileID: 753432772}
   _nextButton: {fileID: 543364857}
   _palette3: {fileID: 1423616584}
   _palette4: {fileID: 148309384}
+  _splEnemyVideo: {fileID: 1784237054}
   _playButton: {fileID: 802145030}
 --- !u!1 &1668873585
 GameObject:

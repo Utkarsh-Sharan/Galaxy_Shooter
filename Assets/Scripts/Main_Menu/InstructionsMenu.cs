@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class InstructionsMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject _palette1, _palette2, _nextButton;
-    [SerializeField] private GameObject _palette3, _palette4, _playButton;
+    [SerializeField] private GameObject _palette1, _palette2, _introVideo, _nextButton;
+    [SerializeField] private GameObject _palette3, _palette4, _splEnemyVideo, _playButton;
 
     // Start is called before the first frame update
     void Start()
@@ -22,9 +22,11 @@ public class InstructionsMenu : MonoBehaviour
 
     public void NextButtonClicked()
     {
+        _introVideo.SetActive(false);
         _palette1.SetActive(false);
         _palette2.SetActive(false);
         _nextButton.SetActive(false);
+        _splEnemyVideo.SetActive(true);
         _palette3.SetActive(true);
         _palette4.SetActive(true);
         _playButton.SetActive(true);
