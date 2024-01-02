@@ -151,7 +151,7 @@ public class Player : MonoBehaviour
             _audioSource.clip = _playerExplosionClip;
             _audioSource.Play();
 
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 
