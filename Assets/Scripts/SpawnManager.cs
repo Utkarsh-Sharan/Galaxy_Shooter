@@ -30,7 +30,7 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(5f);
             if(_isSpecialEnemySpawned == true)
             {
-                yield return new WaitForSeconds(9);
+                yield return new WaitForSeconds(5);
             }
         }
     }
