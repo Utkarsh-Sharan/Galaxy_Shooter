@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
+using UnityEditor;
 
 public class UIManager : MonoBehaviour
 {
@@ -134,6 +135,10 @@ public class UIManager : MonoBehaviour
 
     public void QuitToDesktop()
     {
+#if UNITY_EDITOR
+        EditorApplication.ExitPlaymode();
+#else
         Application.Quit();
+#endif
     }
 }
