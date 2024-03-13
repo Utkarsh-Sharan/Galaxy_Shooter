@@ -2041,15 +2041,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0b7f9d6d20abb409ac603ab125ce54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _palette1: {fileID: 1937029482}
-  _palette2: {fileID: 1072706925}
-  _introVideo: {fileID: 753432772}
-  _nextButton: {fileID: 543364857}
-  _palette3: {fileID: 1423616584}
-  _palette4: {fileID: 148309384}
-  _splEnemyVideo: {fileID: 1784237054}
-  _playButton: {fileID: 802145030}
-  _backButton: {fileID: 1638560589}
+  gameObjects:
+  - {fileID: 1937029482}
+  - {fileID: 1072706925}
+  - {fileID: 753432772}
+  - {fileID: 543364857}
+  - {fileID: 1423616584}
+  - {fileID: 148309384}
+  - {fileID: 1784237054}
+  - {fileID: 802145030}
+  - {fileID: 1638560589}
 --- !u!1 &1668873585
 GameObject:
   m_ObjectHideFlags: 0
