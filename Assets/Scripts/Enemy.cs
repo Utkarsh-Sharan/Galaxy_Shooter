@@ -71,7 +71,8 @@ public class Enemy : MonoBehaviour
 
         if (other.gameObject.CompareTag("Laser"))
         {
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
 
             if(_player != null)
             {

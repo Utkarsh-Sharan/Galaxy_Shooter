@@ -196,7 +196,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: Move with W, A, S, D and press Space to shoot Laser. Destroy the Asteroid
     in order to start the game. Eliminate the enemies with your Laser and collect
-    powerups as they come for top to down.
+    powerups as they come from top to down.
 --- !u!222 &96068358
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1433,7 +1433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

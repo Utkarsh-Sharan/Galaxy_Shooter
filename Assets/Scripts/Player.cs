@@ -115,7 +115,13 @@ public class Player : MonoBehaviour
         else
         {
             //fire single laser
-            Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
+            //Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
+            GameObject laser = ObjectPooler.instance.GetPooledObjects();
+            if(laser != null )
+            {
+                laser.transform.position = transform.position + new Vector3(0, 1.05f, 0);
+                laser.SetActive(true);
+            }
         }
 
         _audioSource.Play();
