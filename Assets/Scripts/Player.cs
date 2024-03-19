@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Subject
 {
     private float _speed = 10f;
 
@@ -82,9 +82,6 @@ public class Player : MonoBehaviour
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
 
-        //transform.Translate(Vector3.right * horizontalInput * _speed * Time.deltaTime);      //(new Vector3(1, 0, 0) * 5 * Time.deltaTime; //(new Vector3(-1, 0, 0) will move the object towards left
-        //transform.Translate(Vector3.up * verticalInput * _speed * Time.deltaTime);      //(new Vector3(1, 0, 0) * 5 * Time.deltaTime;
-
         Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);       
         transform.Translate(direction * _speed * Time.deltaTime);
         
@@ -115,7 +112,6 @@ public class Player : MonoBehaviour
         else
         {
             //fire single laser
-            //Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
             GameObject laser = ObjectPooler.instance.GetPooledObjects();
             if(laser != null )
             {
@@ -205,8 +201,9 @@ public class Player : MonoBehaviour
         _uiManager.EnemiesKilled(_enemies);
 
         if (_enemies > 4 && _enemies % 5 == 0 && _playerLife != 0)
-        {
-            _uiManager.PowerupPanel();
+        {          
+            NotifyObservers(PowerupPanelActions.PanelActive);
+            NotifyObservers(PowerupPanelActions.PanelSound);
         }
     }
 }
