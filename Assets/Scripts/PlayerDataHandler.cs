@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerDataHandler : MonoBehaviour
 {
+    //singleton
     private static PlayerDataHandler _instance;
     public static PlayerDataHandler Instance
     {
@@ -22,10 +23,12 @@ public class PlayerDataHandler : MonoBehaviour
         }
     }
 
+    //current player data
     public string currentPlayerName;
     public int currentPlayerScore;
     public int currentPlayerEnemiesKilled;
 
+    //best player data
     public string bestPlayerName;
     public int bestPlayerScore;
     public int bestPlayerEnemiesKilled;
@@ -50,7 +53,7 @@ public class PlayerDataHandler : MonoBehaviour
         public int _bestPlayerEnemiesKilled;
     }
 
-    public void SavePlayerData(string bestPlayerName, int bestPlayerScore, int bestPlayerEnemiesKilled)
+    public void SaveBestPlayerData(string bestPlayerName, int bestPlayerScore, int bestPlayerEnemiesKilled)
     {
         SaveData data = new SaveData();
         data._bestPlayerName = bestPlayerName;
@@ -61,7 +64,7 @@ public class PlayerDataHandler : MonoBehaviour
         File.WriteAllText(Application.persistentDataPath + "/saveFile.json", json);
     }
 
-    public void LoadPlayerData()
+    public void LoadBestPlayerData()
     {
         string path = Application.persistentDataPath + "/saveFile.json";
         if(File.Exists(path))
