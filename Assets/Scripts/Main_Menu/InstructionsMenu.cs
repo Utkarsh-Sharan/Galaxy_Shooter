@@ -29,8 +29,8 @@ public class InstructionsMenu : MonoBehaviour
         }
     }
 
-    public void PlayButtonClicked()
+    public void MenuButtonClicked()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(0);
     }
 }

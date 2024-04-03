@@ -35,6 +35,11 @@ public class Player : Subject
     private int _score;
     private UIManager _uiManager;  //handle to the component
 
+    //for high score
+    private string _currentPlayerName;
+    private string _bestPlayerName;
+    private int _bestPlayerScore;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +66,9 @@ public class Player : Subject
         {
             _audioSource.clip = _laserSoundClip;
         }
+
+        _currentPlayerName = PlayerDataHandler.Instance.currentPlayerName;
+        _uiManager.DisplayCurrentPlayerName(_currentPlayerName);
     }
 
     // Update is called once per frame
@@ -150,6 +158,8 @@ public class Player : Subject
             _audioSource.clip = _playerExplosionClip;
             _audioSource.Play();
 
+            CheckForBestPlayer();
+
             this.gameObject.SetActive(false);
         }
     }
@@ -189,18 +199,34 @@ public class Player : Subject
     public void AddScore(int points)
     {
         _score += points;
+        PlayerDataHandler.Instance.currentPlayerScore = _score;
         _uiManager.UpdateScore(_score);
     }
 
     public void AddEnemies(int enemy)
     {
         _enemies += enemy;
+        PlayerDataHandler.Instance.currentPlayerEnemiesKilled = _enemies;
         _uiManager.EnemiesKilled(_enemies);
 
         if (_enemies > 4 && _enemies % 5 == 0 && _playerLife != 0)
         {          
             NotifyObservers(PowerupPanelActions.PanelActive);
             NotifyObservers(PowerupPanelActions.PanelSound);
+        }
+    }
+
+    private void CheckForBestPlayer()
+    {
+        int score = PlayerDataHandler.Instance.currentPlayerScore;
+        int enemiesKilled = PlayerDataHandler.Instance.currentPlayerEnemiesKilled;
+        if(score > PlayerDataHandler.Instance.bestPlayerScore)
+        {
+            PlayerDataHandler.Instance.bestPlayerScore = score;
+            PlayerDataHandler.Instance.bestPlayerName = _currentPlayerName;
+            PlayerDataHandler.Instance.bestPlayerEnemiesKilled = enemiesKilled;
+
+            PlayerDataHandler.Instance.SaveBestPlayerData(_currentPlayerName, score, enemiesKilled);
         }
     }
 }

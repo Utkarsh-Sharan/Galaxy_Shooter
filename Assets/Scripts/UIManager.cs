@@ -7,6 +7,7 @@ using UnityEditor;
 
 public class UIManager : MonoBehaviour, IObservable
 {
+    [SerializeField] private Text _currentPlayerName;
     [SerializeField] private Text _scoreText;
     [SerializeField] private Text _enemiesKilledText;
     [SerializeField] private Image _livesImg;
@@ -71,6 +72,11 @@ public class UIManager : MonoBehaviour, IObservable
                 _powerupPanel.SetActive(false);
             }
         }
+    }
+
+    public void DisplayCurrentPlayerName(string playerName)
+    {
+        _currentPlayerName.text = $"Player: {playerName}";
     }
 
     public void EnemiesKilled(int enemy)
