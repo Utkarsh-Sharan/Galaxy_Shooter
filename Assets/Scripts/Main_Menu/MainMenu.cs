@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject[] _gameObjects;
+
+    [SerializeField] private Text _currentPlayerName;
+
     [SerializeField] private Text _bestPlayerName;
     [SerializeField] private Text _bestPlayerScore;
     [SerializeField] private Text _bestPlayerEnemiesKilled;
@@ -44,8 +47,22 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    public void LoadGame()
+    public void NewGameNameInput()
     {
+        for (int i = 0; i < _gameObjects.Length; i++)
+        {
+            if (i < 5)
+                _gameObjects[i].SetActive(false);
+            else if(i == 5 || i < 9)
+                continue;
+            else
+                _gameObjects[i].SetActive(true);
+        }
+    }
+
+    public void StartGame()
+    {
+        PlayerDataHandler.Instance.currentPlayerName = _currentPlayerName.text;
         SceneManager.LoadScene(2);
     }
 

@@ -29,14 +29,11 @@ public class Player : Subject
     //Boolean variables.
     private bool _isTripleShotActive = false;
     private bool _isShieldActive = false;
-    
-    //UI variables
-    private int _score;
-    [SerializeField] private int _enemies;
-    private UIManager _uiManager;  //handle to the component
 
-    //Special Enemy variables
-    private SpecialEnemy _specialEnemy;
+    //UI variables
+    [SerializeField] private int _enemies;
+    private int _score;
+    private UIManager _uiManager;  //handle to the component
 
     // Start is called before the first frame update
     void Start()
