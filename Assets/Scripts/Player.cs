@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Subject
 {
     private float _speed = 10f;
 
@@ -29,14 +29,16 @@ public class Player : MonoBehaviour
     //Boolean variables.
     private bool _isTripleShotActive = false;
     private bool _isShieldActive = false;
-    
+
     //UI variables
-    private int _score;
     [SerializeField] private int _enemies;
+    private int _score;
     private UIManager _uiManager;  //handle to the component
 
-    //Special Enemy variables
-    private SpecialEnemy _specialEnemy;
+    //for high score
+    private string _currentPlayerName;
+    private string _bestPlayerName;
+    private int _bestPlayerScore;
 
     // Start is called before the first frame update
     void Start()
@@ -64,6 +66,9 @@ public class Player : MonoBehaviour
         {
             _audioSource.clip = _laserSoundClip;
         }
+
+        _currentPlayerName = PlayerDataHandler.instance.currentPlayerName;
+        _uiManager.DisplayCurrentPlayerName(_currentPlayerName);
     }
 
     // Update is called once per frame
@@ -81,9 +86,6 @@ public class Player : MonoBehaviour
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
-
-        //transform.Translate(Vector3.right * horizontalInput * _speed * Time.deltaTime);      //(new Vector3(1, 0, 0) * 5 * Time.deltaTime; //(new Vector3(-1, 0, 0) will move the object towards left
-        //transform.Translate(Vector3.up * verticalInput * _speed * Time.deltaTime);      //(new Vector3(1, 0, 0) * 5 * Time.deltaTime;
 
         Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);       
         transform.Translate(direction * _speed * Time.deltaTime);
@@ -115,7 +117,12 @@ public class Player : MonoBehaviour
         else
         {
             //fire single laser
-            Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
+            GameObject laser = ObjectPooler.instance.GetPooledObjects();
+            if(laser != null )
+            {
+                laser.transform.position = transform.position + new Vector3(0, 1.05f, 0);
+                laser.SetActive(true);
+            }
         }
 
         _audioSource.Play();
@@ -150,6 +157,8 @@ public class Player : MonoBehaviour
 
             _audioSource.clip = _playerExplosionClip;
             _audioSource.Play();
+
+            CheckForBestPlayer();
 
             this.gameObject.SetActive(false);
         }
@@ -190,17 +199,34 @@ public class Player : MonoBehaviour
     public void AddScore(int points)
     {
         _score += points;
+        PlayerDataHandler.instance.currentPlayerScore = _score;
         _uiManager.UpdateScore(_score);
     }
 
     public void AddEnemies(int enemy)
     {
         _enemies += enemy;
+        PlayerDataHandler.instance.currentPlayerEnemiesKilled = _enemies;
         _uiManager.EnemiesKilled(_enemies);
 
         if (_enemies > 4 && _enemies % 5 == 0 && _playerLife != 0)
+        {          
+            NotifyObservers(PowerupPanelActions.PanelActive);
+            NotifyObservers(PowerupPanelActions.PanelSound);
+        }
+    }
+
+    private void CheckForBestPlayer()
+    {
+        int score = PlayerDataHandler.instance.currentPlayerScore;
+        int enemiesKilled = PlayerDataHandler.instance.currentPlayerEnemiesKilled;
+        if(score > PlayerDataHandler.instance.bestPlayerScore)
         {
-            _uiManager.PowerupPanel();
+            PlayerDataHandler.instance.bestPlayerScore = score;
+            PlayerDataHandler.instance.bestPlayerName = _currentPlayerName;
+            PlayerDataHandler.instance.bestPlayerEnemiesKilled = enemiesKilled;
+
+            PlayerDataHandler.instance.SaveBestPlayerData(_currentPlayerName, score, enemiesKilled);
         }
     }
 }

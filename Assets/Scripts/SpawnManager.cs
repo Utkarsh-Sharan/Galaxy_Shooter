@@ -27,7 +27,7 @@ public class SpawnManager : MonoBehaviour
             GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
             newEnemy.transform.parent = _enemyContainer.transform;
 
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(3f);
             if(_isSpecialEnemySpawned == true)
             {
                 yield return new WaitForSeconds(5);

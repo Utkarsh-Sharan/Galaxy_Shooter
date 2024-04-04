@@ -196,7 +196,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: Move with W, A, S, D and press Space to shoot Laser. Destroy the Asteroid
     in order to start the game. Eliminate the enemies with your Laser and collect
-    powerups as they come for top to down.
+    powerups as they come from top to down.
 --- !u!222 &96068358
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -500,7 +500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1032,7 +1032,7 @@ GameObject:
   - component: {fileID: 802145033}
   - component: {fileID: 802145032}
   m_Layer: 5
-  m_Name: Play_Button
+  m_Name: Menu_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1104,7 +1104,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1660062004}
         m_TargetAssemblyTypeName: InstructionsMenu, Assembly-CSharp
-        m_MethodName: PlayButtonClicked
+        m_MethodName: MenuButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1433,7 +1433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2041,15 +2041,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0b7f9d6d20abb409ac603ab125ce54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _palette1: {fileID: 1937029482}
-  _palette2: {fileID: 1072706925}
-  _introVideo: {fileID: 753432772}
-  _nextButton: {fileID: 543364857}
-  _palette3: {fileID: 1423616584}
-  _palette4: {fileID: 148309384}
-  _splEnemyVideo: {fileID: 1784237054}
-  _playButton: {fileID: 802145030}
-  _backButton: {fileID: 1638560589}
+  gameObjects:
+  - {fileID: 1937029482}
+  - {fileID: 1072706925}
+  - {fileID: 753432772}
+  - {fileID: 543364857}
+  - {fileID: 1423616584}
+  - {fileID: 148309384}
+  - {fileID: 1784237054}
+  - {fileID: 802145030}
+  - {fileID: 1638560589}
 --- !u!1 &1668873585
 GameObject:
   m_ObjectHideFlags: 0
@@ -2100,7 +2101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2551,7 +2552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2571,7 +2572,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Play
+  m_Text: Menu
 --- !u!222 &2054020301
 CanvasRenderer:
   m_ObjectHideFlags: 0

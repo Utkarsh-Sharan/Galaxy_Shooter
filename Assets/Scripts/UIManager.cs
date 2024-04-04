@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
 using UnityEditor;
 
-public class UIManager : MonoBehaviour
+public class UIManager : MonoBehaviour, IObservable
 {
+    [SerializeField] private Text _currentPlayerName;
     [SerializeField] private Text _scoreText;
     [SerializeField] private Text _enemiesKilledText;
     [SerializeField] private Image _livesImg;
@@ -16,9 +16,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text _restartGameText;
     [SerializeField] private GameObject _powerupPanel;
 
+    [SerializeField] private Subject _playerSubject;
     private GameManager _gameManager;
     private Player _player;
     private bool _isPowerupPanelActive;
+
+    private void OnEnable()
+    {
+        _playerSubject.AddObserver(this);
+    }  
 
     // Start is called before the first frame update
     void Start()
@@ -68,12 +74,25 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void DisplayCurrentPlayerName(string playerName)
+    {
+        _currentPlayerName.text = $"Player: {playerName}";
+    }
+
     public void EnemiesKilled(int enemy)
     {
         _enemiesKilledText.text = "Enemies Killed: " + enemy.ToString();
     }
 
-    public void PowerupPanel()
+    public void OnNotify(PowerupPanelActions action)
+    {
+        if(action == PowerupPanelActions.PanelActive)
+        {
+            PowerupPanel();
+        }
+    }
+
+    private void PowerupPanel()
     {
         _powerupPanel.SetActive(true);
         _isPowerupPanelActive = true;
@@ -140,5 +159,10 @@ public class UIManager : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    private void OnDisable()
+    {
+        _playerSubject.RemoveObserver(this);
     }
 }
