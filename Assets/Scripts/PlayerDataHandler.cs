@@ -6,22 +6,7 @@ using UnityEngine;
 public class PlayerDataHandler : MonoBehaviour
 {
     //singleton
-    private static PlayerDataHandler _instance;
-    public static PlayerDataHandler Instance
-    {
-        get
-        {
-            if(_instance == null)
-            {            
-                return _instance;
-            }
-            return null;
-        }
-        set
-        {
-            _instance = value;
-        }
-    }
+    public static PlayerDataHandler instance;
 
     //current player data
     public string currentPlayerName;
@@ -35,13 +20,13 @@ public class PlayerDataHandler : MonoBehaviour
 
     private void Awake()
     {
-        if(_instance != null)
+        if(instance != null)
         {
             Destroy(this.gameObject);
             return;
         }
         
-        _instance = this;
+        instance = this;
         DontDestroyOnLoad(this.gameObject);
     }
 

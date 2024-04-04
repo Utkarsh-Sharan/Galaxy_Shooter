@@ -22,12 +22,12 @@ public class MainMenu : MonoBehaviour
 
     public void LoadHighScore()
     {
-        PlayerDataHandler.Instance.LoadBestPlayerData();
-        _bestPlayerName.text = $"Player : {PlayerDataHandler.Instance.bestPlayerName}";
-        _bestPlayerScore.text = $"Score : {PlayerDataHandler.Instance.bestPlayerScore}";
-        _bestPlayerEnemiesKilled.text = $"Enemies Killed : {PlayerDataHandler.Instance.bestPlayerEnemiesKilled}";
+        PlayerDataHandler.instance.LoadBestPlayerData();
+        _bestPlayerName.text = $"Player : {PlayerDataHandler.instance.bestPlayerName}";
+        _bestPlayerScore.text = $"Score : {PlayerDataHandler.instance.bestPlayerScore}";
+        _bestPlayerEnemiesKilled.text = $"Enemies Killed : {PlayerDataHandler.instance.bestPlayerEnemiesKilled}";
 
-        for (int i = 0; i < _gameObjects.Length; i++)
+        for (int i = 0; i < _gameObjects.Length - 2; i++)
         {
             if(i < 5)
                 _gameObjects[i].SetActive(false);
@@ -62,7 +62,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        PlayerDataHandler.Instance.currentPlayerName = _currentPlayerName.text;
+        PlayerDataHandler.instance.currentPlayerName = _currentPlayerName.text;
         SceneManager.LoadScene(2);
     }
 
