@@ -87,7 +87,7 @@ public class SpecialEnemy : MonoBehaviour
     
     IEnumerator FireSpecialLaser()
     {   
-        while (true)
+        while (_player._playerLife != 0)
         {           
             yield return new WaitForSeconds(2);
             Instantiate(_specialLaserPrefab, _laserSpawnPos.position, Quaternion.identity);
